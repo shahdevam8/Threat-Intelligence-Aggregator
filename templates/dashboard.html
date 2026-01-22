@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Threat Intelligence Dashboard</title>
+    <meta http-equiv="refresh" content="10">
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { border-collapse: collapse; width: 80%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #333; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Threat Intelligence Dashboard</h1>
+    <h2>Blocklists</h2>
+    <table>
+        <tr><th>Type</th><th>Count</th></tr>
+        <tr><td>IPs</td><td>{{ blocklists.ips|length if blocklists else 0 }}</td></tr>
+        <tr><td>Domains</td><td>{{ blocklists.domains|length if blocklists else 0 }}</td></tr>
+        <tr><td>URLs</td><td>{{ blocklists.urls|length if blocklists else 0 }}</td></tr>
+        <tr><td>Hashes</td><td>{{ blocklists.hashes|length if blocklists else 0 }}</td></tr>
+        <tr><td>Emails</td><td>{{ blocklists.emails|length if blocklists else 0 }}</td></tr>
+    </table>
+
+    <h2>Feed Summary</h2>
+    <table>
+        <tr><th>Feed</th><th>Lines Processed</th></tr>
+        {% for feed, count in report.feed_summary.items() %}
+        <tr><td>{{ feed }}</td><td>{{ count }}</td></tr>
+        {% endfor %}
+    </table>
+
+    <p>Last updated: {{ report.timestamp if report else "N/A" }}</p>
+</body>
+</html>

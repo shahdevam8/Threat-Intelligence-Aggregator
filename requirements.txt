@@ -1,0 +1,4 @@
+Flask==2.3.4
+requests==2.31.0
+ipaddress==1.0.25
+reportlab==4.0
